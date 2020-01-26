@@ -77,7 +77,13 @@ class Polynomial
 			}
 		}
     	return temp;
-	}	//overloading ends here
+	}
+	void operator = (Polynomial const &obj){	//overloading '=' operator
+		this->degree = obj.degree;
+		for(int i=obj.degree;i>=0;i--){
+			this->coeffecient[i] = obj.coeffecient[i];
+		}
+	}	// overloading ends here
   
     void storePolynomial()
     {
@@ -165,5 +171,10 @@ int main()	//driver code
   thirdPolynomial.display();
    cout<<"\nAfter Subtracting 2nd polynomial from 1st 	: ";
   fourthPolynomial.display();
+  
+  Polynomial fifthPolynomial(0);
+  fifthPolynomial = fourthPolynomial;
+  cout<<"\n\nfifthPolynomial (Checking working of = operator) : ";
+  fifthPolynomial.display();
 	return 0;
 }	//main ends here
