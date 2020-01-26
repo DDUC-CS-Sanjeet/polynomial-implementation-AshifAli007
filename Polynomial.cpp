@@ -52,6 +52,30 @@ class Polynomial
 		}
     	return temp;
 	}
+	Polynomial operator - (Polynomial const &obj){
+    	Polynomial temp;
+    	int small;
+    	if(this->degree > obj.degree){
+    		temp.degree = this->degree;
+    		small = obj.degree;
+		}else{
+			temp.degree = obj.degree;
+			small = this->degree;
+		}
+    	for(int i=temp.degree;i>=0;i--){
+    		if(i<=small){
+    			temp.coeffecient[i] = this->coeffecient[i] - obj.coeffecient[i]  ;
+			}else{
+				if(this->degree > obj.degree){
+					temp.coeffecient[i] = this->coeffecient[i];
+				}else{
+					temp.coeffecient[i] = -obj.coeffecient[i];
+				}
+				
+			}
+		}
+    	return temp;
+	}
   
     void storePolynomial()
     {
@@ -148,13 +172,14 @@ int main()
   secondPolynomial.storePolynomial();
   
   thirdPolynomial=firstPolynomial+secondPolynomial;
-//  Polynomial fourthPolynomial=firstPolynomial-secondPolynomial;
-  cout<<"1st Polynomial : ";
+  Polynomial fourthPolynomial=firstPolynomial-secondPolynomial;
+  cout<<"\n1st Polynomial 					: ";
   firstPolynomial.display();
-  cout<<"\n2nd Polynomial : ";
+  cout<<"\n2nd Polynomial 					: ";
   secondPolynomial.display();
-  cout<<"\nAfter Adding 1st And 2nd Polynomial : ";
+  cout<<"\nAfter Adding 1st And 2nd Polynomial 		: ";
   thirdPolynomial.display();
-//  fourthPolynomial.display();
+   cout<<"\nAfter Subtracting 2nd polynomial from 1st 	: ";
+  fourthPolynomial.display();
 	return 0;
 }
