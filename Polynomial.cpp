@@ -1,3 +1,5 @@
+/* 	name : Mohd Ashif
+	roll no : 119HCS4035	*/
 #include<iostream>
 using namespace std;
 
@@ -21,14 +23,14 @@ class Polynomial
       degree = deg;
     }
   
-    ~Polynomial()
+    ~Polynomial()	// destructor not required
     {
       // Behavior of destructor
       //cout<<"\nDestructing";
     }
   
     //  Overload copy constructor, +, - and = operators
-    Polynomial operator + (Polynomial const &obj){
+    Polynomial operator + (Polynomial const &obj){	//overloading '+' operator
     	Polynomial temp;
     	int small;
     	if(this->degree > obj.degree){
@@ -52,7 +54,7 @@ class Polynomial
 		}
     	return temp;
 	}
-	Polynomial operator - (Polynomial const &obj){
+	Polynomial operator - (Polynomial const &obj){		//overloading '-' operator
     	Polynomial temp;
     	int small;
     	if(this->degree > obj.degree){
@@ -75,14 +77,20 @@ class Polynomial
 			}
 		}
     	return temp;
-	}
+	}	//overloading ends here
   
     void storePolynomial()
     {
       //  Code to enter and store polynomial
       for(int i=degree;i>=0;i--){
-      	cout<<"\nEnter The Coffecient of X^"<<i<<" : ";
-      	cin>>coeffecient[i];
+      	if(i==0){
+      		cout<<"Enter The Value Of Constant : "	;
+      		cin>>coeffecient[i];	
+		}else{
+			cout<<"Enter The Coffecient of X^"<<i<<" : ";
+      		cin>>coeffecient[i];	
+		}
+      	
 	  }
       
     }
@@ -92,8 +100,8 @@ class Polynomial
       
       for(int i=degree,j=0;i>=0;i--){
       	
-	      	if(coeffecient[i]>0){
-	      			if(j>0)
+	      	if(coeffecient[i]!=0){
+	      			if(j>0&&coeffecient[i]>0)
 	      			cout<<"+";
 	      			
 	      			
@@ -121,39 +129,15 @@ class Polynomial
 						j++;
 					}
 	      			
-			}else if(coeffecient[i]<0){
-					if(i==1){
-						if(coeffecient[i]!=1){
-							cout<<coeffecient[i]<<"x";
-							j++;	
-						}else{
-							cout<<"x";
-							j++;	
-						}
-							
-	      				
-					}else if(i!=0){
-						if(coeffecient[i]!=1){
-							cout<<coeffecient[i]<<"x^"<<i;
-							j++;	
-						}else{
-							cout<<"x^"<<i;
-							j++;
-						}
-						
-					}else{
-						cout<<coeffecient[i];
-						j++;
-					}
 			}
       	
 	  	}
     }
     
   
-};
+};	//class ends here
 
-int main()
+int main()	//driver code
 {
   int degFirst, degSecond;
   // Ask user to input the values of degFirst and degSecond 
@@ -168,7 +152,7 @@ int main()
   
   cout<<"\nEnter The Coeffecient of 1st Polynomial :-\n";
   firstPolynomial.storePolynomial();
-  cout<<"\n\nEnter The Coeffecient of 2nd Polynomial :-\n";
+  cout<<"\nEnter The Coeffecient of 2nd Polynomial :-\n";
   secondPolynomial.storePolynomial();
   
   thirdPolynomial=firstPolynomial+secondPolynomial;
@@ -182,4 +166,4 @@ int main()
    cout<<"\nAfter Subtracting 2nd polynomial from 1st 	: ";
   fourthPolynomial.display();
 	return 0;
-}
+}	//main ends here
