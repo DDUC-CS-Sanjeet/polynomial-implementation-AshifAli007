@@ -22,11 +22,16 @@ class Polynomial
       // Behavior of constructor with arguments
       degree = deg;
     }
-  
-    ~Polynomial()	// destructor not required
+  	Polynomial(Polynomial const &obj){	// copy constructor
+  		this->degree = obj.degree;
+		for(int i=0;i<=obj.degree;i++)	{
+			this->coeffecient[i] = obj.coeffecient[i];
+		}
+	}
+    ~Polynomial()	// destructor
     {
       // Behavior of destructor
-      //cout<<"\nDestructing";
+      cout<<"\nDestructing "<<this;
     }
   
     //  Overload copy constructor, +, - and = operators
@@ -172,9 +177,11 @@ int main()	//driver code
    cout<<"\nAfter Subtracting 2nd polynomial from 1st 	: ";
   fourthPolynomial.display();
   
-  Polynomial fifthPolynomial(0);
+  Polynomial fifthPolynomial;		//for checking equal operator
   fifthPolynomial = fourthPolynomial;
-  cout<<"\n\nfifthPolynomial (Checking working of = operator) : ";
+  cout<<"\n\nfifthPolynomial (Checking working of = operator): ";
   fifthPolynomial.display();
+  cout<<" (Its same as result of subtraction)\n";
+  
 	return 0;
 }	//main ends here
